@@ -1,0 +1,81 @@
+:root {
+  --deep-sea: #0d2b45;
+  --ocean-mist: #5a7d9a;
+  --seafoam: #8dbfb7;
+  --sandy-shore: #dcc7aa;
+  --salt-air: #f4f6f6;
+
+  --deep-sea-2: var(--ocean-mist);
+  --ink: var(--deep-sea);
+  --muted: var(--ocean-mist);
+  --white: var(--salt-air);
+  --line: rgba(90, 125, 154, 0.28);
+  --shadow: 0 24px 80px rgba(13, 43, 69, 0.18);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --font-display: 'Italiana', Georgia, serif;
+  --font-body: 'DM Sans', Arial, sans-serif;
+  --section-padding-block: clamp(50px, 6vw, 90px);
+  --section-content-gap: clamp(42px, 5vw, 64px);
+  --section-title-size: clamp(2.8rem, 6vw, 5.5rem);
+  --section-title-offset: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--salt-air);
+  color: var(--deep-sea);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  color: var(--deep-sea);
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+::selection {
+  background: var(--seafoam);
+  color: var(--deep-sea);
+}

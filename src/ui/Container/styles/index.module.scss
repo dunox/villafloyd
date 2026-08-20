@@ -1,0 +1,15 @@
+.container {
+  width: min(100% - 40px, 1310px);
+  margin-inline: auto;
+}
+
+.narrow {
+  width: min(100% - 40px, 960px);
+}
+
+@media (max-width: 640px) {
+  .container,
+  .narrow {
+    width: min(100% - 24px, 1240px);
+  }
+}

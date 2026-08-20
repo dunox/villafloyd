@@ -1,0 +1,16 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(244, 246, 246, 0.32);
+  border-radius: 999px;
+  background: rgba(13, 43, 69, 0.22);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 30px;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}

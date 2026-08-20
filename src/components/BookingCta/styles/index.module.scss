@@ -1,0 +1,54 @@
+.bookingCtaSection {
+  position: relative;
+  min-height: 680px;
+  display: grid;
+  align-items: center;
+  padding: var(--section-padding-block) 0;
+  background-position: center;
+  background-size: cover;
+  color: var(--white);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(13, 43, 69, 0.8), rgba(13, 43, 69, 0.2));
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  h2 {
+    max-width: 75%;
+    margin: 24px 0;
+    font-family: var(--font-body);
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+
+  p {
+    max-width: 520px;
+    margin-bottom: 30px;
+    color: rgba(244, 246, 246, 0.75);
+    font-size: 1.05rem;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  .bookingCtaSection {
+    min-height: 600px;
+  }
+}

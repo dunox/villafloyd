@@ -1,0 +1,103 @@
+.reviewsSection {
+  overflow: hidden;
+  padding: var(--section-padding-block) 0;
+  background: var(--deep-sea);
+  color: var(--white);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+
+  button {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border: 1px solid rgba(244, 246, 246, 0.26);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+  }
+}
+
+.card {
+  width: min(100%, 860px);
+  margin-top: var(--section-content-gap);
+  min-height: 360px;
+  padding: clamp(28px, 5vw, 54px);
+  border: 1px solid rgba(244, 246, 246, 0.13);
+  border-radius: 24px;
+  background: rgba(244, 246, 246, 0.045);
+  animation: review-in 420ms ease both;
+
+  blockquote {
+    max-width: 650px;
+    margin: 16px 0 46px;
+    font-family: var(--font-body);
+    font-size: clamp(1.75rem, 4vw, 3.1rem);
+    line-height: 1.18;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    strong {
+      font-size: 0.875rem;
+    }
+
+    span {
+      color: rgba(244, 246, 246, 0.54);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.quoteMark {
+  color: var(--seafoam);
+  font-family: Georgia, serif;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 28px;
+
+  button {
+    width: 26px;
+    height: 3px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(244, 246, 246, 0.24);
+    cursor: pointer;
+  }
+
+  .dotActive {
+    background: var(--seafoam);
+  }
+}
+
+@keyframes review-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 620px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

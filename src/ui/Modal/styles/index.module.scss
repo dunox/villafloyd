@@ -1,0 +1,202 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(90, 125, 154, 0.22), transparent 46%),
+    rgba(7, 28, 46, 0.86);
+  backdrop-filter: blur(12px);
+}
+
+.modal {
+  display: grid;
+  width: min(100%, 820px);
+  max-height: min(calc(100dvh - 32px), 780px);
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid rgba(244, 246, 246, 0.42);
+  border-radius: 26px;
+  background: var(--salt-air);
+  box-shadow: 0 32px 90px rgba(4, 22, 37, 0.5);
+  color: var(--deep-sea);
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  overflow: hidden;
+  padding: 22px 28px 20px;
+  border-bottom: 1px solid rgba(90, 125, 154, 0.28);
+  background:
+    radial-gradient(circle at 87% 4%, rgba(141, 191, 183, 0.72) 0 52px, rgba(141, 191, 183, 0) 53px),
+    linear-gradient(125deg, var(--salt-air) 0%, rgba(220, 199, 170, 0.74) 76%, rgba(141, 191, 183, 0.62) 145%);
+  color: var(--deep-sea);
+
+  &::after {
+    position: absolute;
+    right: 78px;
+    bottom: -46px;
+    width: 104px;
+    height: 104px;
+    border: 1px solid rgba(13, 43, 69, 0.18);
+    border-radius: 50%;
+    content: '';
+  }
+
+  button {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    min-width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid rgba(13, 43, 69, 0.22);
+    border-radius: 50%;
+    background: rgba(244, 246, 246, 0.86);
+    color: var(--deep-sea);
+    cursor: pointer;
+    transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+    &:hover {
+      background: var(--salt-air);
+      border-color: var(--deep-sea);
+      transform: rotate(6deg);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--ocean-mist);
+      outline-offset: 3px;
+    }
+  }
+}
+
+.headerCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+
+  h2 {
+    margin: 10px 0 7px;
+    color: var(--deep-sea);
+    font-family: var(--font-body);
+    font-size: clamp(2.35rem, 4.5vw, 3.55rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--deep-sea);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    opacity: 0.78;
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--deep-sea);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mark {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--deep-sea);
+  color: var(--salt-air);
+}
+
+.content {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 22px 28px 26px;
+  background: var(--salt-air);
+  color: var(--deep-sea);
+  scrollbar-color: var(--seafoam) rgba(90, 125, 154, 0.09);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-block: 10px;
+    border-radius: 999px;
+    background: rgba(90, 125, 154, 0.09);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 2px solid var(--salt-air);
+    border-radius: 999px;
+    background: linear-gradient(var(--seafoam), var(--ocean-mist));
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--ocean-mist);
+  }
+}
+
+@media (max-width: 700px) {
+  .backdrop {
+    align-items: end;
+    padding: 0;
+  }
+
+  .modal {
+    max-height: 96dvh;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .header {
+    gap: 12px;
+    padding: 18px 18px 16px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .headerCopy h2 {
+    margin-top: 8px;
+    font-size: clamp(2.15rem, 10vw, 3rem);
+  }
+
+  .headerCopy p {
+    max-width: 90%;
+    font-size: 0.875rem;
+  }
+
+  .content {
+    padding: 18px 16px max(24px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 430px) {
+  .kicker > span:last-child {
+    letter-spacing: 0.1em;
+  }
+
+  .headerCopy p {
+    max-width: 100%;
+  }
+}

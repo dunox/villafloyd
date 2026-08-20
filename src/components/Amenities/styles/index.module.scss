@@ -1,0 +1,118 @@
+.amenitiesSection {
+  padding: var(--section-padding-block) 0;
+  background: var(--deep-sea);
+  color: var(--white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: var(--section-content-gap);
+}
+
+.card {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 390px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--salt-air);
+  color: var(--deep-sea);
+  transition: box-shadow 300ms ease, transform 300ms ease;
+
+  &:hover {
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+  }
+}
+
+.image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: rgba(244, 246, 246, 0.08);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(13, 43, 69, 0.2));
+    content: '';
+    pointer-events: none;
+  }
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.card:hover .image img {
+  transform: scale(1.035);
+}
+
+.content {
+  min-height: 144px;
+  padding: 22px 24px 24px;
+
+  h3 {
+    margin: 0 0 8px;
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .grid {
+    display: block;
+    margin-top: 42px;
+    overflow: visible;
+  }
+
+  .card {
+    position: sticky;
+    top: calc(76px + (var(--stack-index) * 10px));
+    z-index: calc(10 + var(--stack-index));
+    min-height: 360px;
+    margin-bottom: 16px;
+    box-shadow: 0 14px 34px rgba(13, 43, 69, 0.2);
+    transform: none;
+
+    &:hover {
+      box-shadow: 0 14px 34px rgba(13, 43, 69, 0.2);
+      transform: none;
+    }
+  }
+
+  .card:hover .image img {
+    transform: none;
+  }
+
+  .content {
+    min-height: 132px;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image img {
+    transition: none;
+  }
+}

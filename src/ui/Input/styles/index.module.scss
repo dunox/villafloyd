@@ -1,0 +1,80 @@
+.field {
+  display: grid;
+  gap: 6px;
+  color: var(--deep-sea);
+
+  > span {
+    color: var(--deep-sea);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    border: 1px solid rgba(90, 125, 154, 0.42);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.54);
+    color: var(--deep-sea);
+    caret-color: var(--deep-sea);
+    outline: none;
+    -webkit-text-fill-color: var(--deep-sea);
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+
+    &:hover {
+      border-color: var(--ocean-mist);
+      background: rgba(220, 199, 170, 0.18);
+    }
+
+    &:focus {
+      border-color: var(--deep-sea);
+      background: var(--salt-air);
+      box-shadow: 0 0 0 4px rgba(141, 191, 183, 0.35);
+    }
+
+    &::placeholder {
+      color: var(--ocean-mist);
+      opacity: 0.82;
+      -webkit-text-fill-color: var(--ocean-mist);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      box-shadow: 0 0 0 1000px var(--salt-air) inset;
+      -webkit-text-fill-color: var(--deep-sea);
+    }
+  }
+
+  input {
+    min-height: 48px;
+    padding: 0 14px;
+  }
+
+  textarea {
+    min-height: 96px;
+    max-height: 180px;
+    padding: 12px 14px;
+    resize: vertical;
+  }
+
+  small {
+    color: var(--ocean-mist);
+    font-size: 0.875rem;
+  }
+}
+
+.field[data-invalid='true'] {
+  input,
+  textarea {
+    border-color: var(--deep-sea);
+    background: rgba(220, 199, 170, 0.24);
+    box-shadow: 0 0 0 3px rgba(220, 199, 170, 0.34);
+  }
+}
+
+.error {
+  color: var(--deep-sea) !important;
+  font-weight: 700;
+}

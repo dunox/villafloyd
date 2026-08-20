@@ -1,0 +1,48 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 0;
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    font-size: 0.95rem;
+  }
+
+  span {
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 34px 28px 34px;
+  align-items: center;
+  text-align: center;
+
+  button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--deep-sea);
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  output {
+    font-weight: 600;
+  }
+}

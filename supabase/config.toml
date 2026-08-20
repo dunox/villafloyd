@@ -1,0 +1,10 @@
+project_id = "gclhmkrqcevbbvugjzsc"
+
+[functions.availability]
+verify_jwt = true
+
+[functions.create-booking]
+verify_jwt = true
+
+[functions.booking-action]
+verify_jwt = false

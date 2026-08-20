@@ -1,0 +1,137 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  color: var(--white);
+  transition: background 220ms ease, color 220ms ease, box-shadow 220ms ease,
+    opacity 180ms ease, visibility 180ms ease;
+}
+
+:global(body.modal-open) .header {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.solid {
+  background: rgba(244, 246, 246, 0.94);
+  color: var(--deep-sea);
+  box-shadow: 0 1px 0 var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.inner {
+  display: flex;
+  min-height: 86px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 42px);
+
+  > a {
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: -6px;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      content: '';
+      transform: scaleX(0);
+      transition: transform 180ms ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuButton,
+.mobileCta {
+  display: none;
+}
+
+.menuButton {
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+}
+
+@media (max-width: 920px) {
+  .desktopCta {
+    display: none;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .nav {
+    position: fixed;
+    inset: 86px 0 auto;
+    display: grid;
+    gap: 0;
+    padding: 22px 20px 30px;
+    border-top: 1px solid var(--line);
+    background: var(--salt-air);
+    color: var(--deep-sea);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 180ms ease, transform 180ms ease;
+
+    > a {
+      padding: 17px 4px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--font-body);
+      font-size: 1.65rem;
+      font-weight: 400;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobileCta {
+    display: inline-flex;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .inner {
+    min-height: 76px;
+  }
+
+  .nav {
+    inset-block-start: 76px;
+  }
+}

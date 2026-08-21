@@ -122,9 +122,9 @@ export const amenities: Amenity[] = [
     description: 'Internet television, sports, films, series, radio, DVD and music library.',
   },
   {
-    image: villaEntrance,
-    imageAlt: 'Entrance to Villa Floyd in Torreblanca',
-    title: 'Easy airport access',
+    image: bbqTerrace,
+    imageAlt: 'Barbecue area on the Villa Floyd terrace',
+    title: 'Barbeque zone',
     description: 'Torreblanca station connects directly to Málaga Airport in around 30 minutes.',
   },
   {

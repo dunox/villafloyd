@@ -14,7 +14,7 @@ const galleryItems = [
   { src: images.poolsideTerraceHotTubMountainView, alt: 'Poolside hot tub with a view towards the Mijas mountains', className: 'wide' },
   { src: images.shadedPoolsideTerrace, alt: 'Shaded seating area beside the private pool', className: 'standard' },
   { src: images.bbqTerrace, alt: 'Barbecue area on the Villa Floyd terrace', className: 'standard' },
-  { src: images.entranceLounge, alt: 'Spacious entrance lounge with additional single beds', className: 'tall' },
+  { src: images.masterBedroom, alt: 'Double bedroom with sea views', className: 'tall' },
   { src: images.livingOverview, alt: 'Main lounge with television, fireplace and air conditioning', className: 'standard' },
   { src: images.livingRoomStoneFireplaceTable, alt: 'Living room seating around the stone fireplace and coffee table', className: 'standard' },
   { src: images.livingRoomTvWorkspace, alt: 'Living room television and workspace', className: 'standard' },
@@ -26,8 +26,8 @@ const galleryItems = [
   { src: images.kitchenArchway, alt: 'Fully equipped kitchen seen through the interior archway', className: 'standard' },
   { src: images.diningArea, alt: 'Dining area seating six guests', className: 'standard' },
   { src: images.splitLevelLivingDiningRoom, alt: 'Split-level living and dining room', className: 'wide' },
-  { src: images.twinBedroom, alt: 'Twin bedroom at Villa Floyd', className: 'wide' },
-  { src: images.masterBedroom, alt: 'Double bedroom with sea views', className: 'standard' },
+  { src: images.entranceLounge, alt: 'Spacious entrance lounge with additional single beds', className: 'wide' },
+  { src: images.twinBedroom, alt: 'Twin bedroom at Villa Floyd', className: 'standard' },
 
 ];
 

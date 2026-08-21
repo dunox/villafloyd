@@ -40,7 +40,7 @@ function Story() {
             </div>
           </article>
           <article className={`${styles.feature} ${styles.reverse}`}>
-            <img src={images.entranceLounge} alt="Spacious entrance lounge with additional single beds" loading="lazy" />
+            <img src={images.twinBedroom} alt="Spacious entrance lounge with additional single beds" loading="lazy" />
             <div>
               <span>Sleeping</span>
               <h3>Quiet rooms, quality linen, room for six.</h3>

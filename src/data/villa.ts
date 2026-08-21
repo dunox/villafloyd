@@ -125,7 +125,7 @@ export const amenities: Amenity[] = [
     image: bbqTerrace,
     imageAlt: 'Barbecue area on the Villa Floyd terrace',
     title: 'Barbeque zone',
-    description: 'Torreblanca station connects directly to Málaga Airport in around 30 minutes.',
+    description: 'A dedicated barbecue area for relaxed outdoor meals with family and friends.',
   },
   {
     image: masterBedroom,

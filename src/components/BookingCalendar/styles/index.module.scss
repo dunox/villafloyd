@@ -1,5 +1,5 @@
 .calendar {
-  width: min(720px, calc(77vw - 32px));
+  width: min(720px, calc(100vw - 32px));
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -17,13 +17,23 @@
   button {
     display: grid;
     width: 38px;
+    min-width: 38px;
     height: 38px;
+    padding: 0;
     place-items: center;
     border: 1px solid var(--line);
     border-radius: 50%;
     background: transparent;
     color: var(--deep-sea);
+    line-height: 0;
     cursor: pointer;
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
   }
 
   span {
@@ -42,6 +52,8 @@
 }
 
 .month {
+  min-width: 0;
+
   h3 {
     margin-bottom: 14px;
     font-family: var(--font-body);
@@ -54,7 +66,7 @@
 .weekDays,
 .days {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .weekDays {
@@ -75,12 +87,16 @@
 .day {
   position: relative;
   z-index: 1;
+  width: 100%;
+  min-width: 0;
   aspect-ratio: 1;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   background: transparent;
   color: var(--available);
   font-size: 0.875rem;
+  line-height: 1;
   cursor: pointer;
 
   &:hover:not(:disabled) {
@@ -157,16 +173,14 @@
   background: var(--unavailable);
 }
 
-@media (max-width: 610px) {
-  .calendar {
-    width: min(720px, calc(90vw - 32px));
-  }
-}
-
 @media (max-width: 680px) {
   .calendar {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
     max-height: 66vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 14px;
   }
 
   .months {
@@ -211,12 +225,3 @@
   }
 }
 
-.booked {
-  color: var(--ocean-mist);
-  text-decoration: line-through;
-}
-
-.checkout:not(:disabled) {
-  color: var(--deep-sea);
-  text-decoration: none;
-}

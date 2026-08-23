@@ -54,15 +54,26 @@
     position: relative;
     z-index: 2;
     display: grid;
+    width: 40px;
     min-width: 40px;
     height: 40px;
+    flex: 0 0 40px;
+    padding: 0;
     place-items: center;
     border: 1px solid rgba(13, 43, 69, 0.22);
     border-radius: 50%;
     background: rgba(244, 246, 246, 0.86);
     color: var(--deep-sea);
+    line-height: 0;
     cursor: pointer;
     transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+    }
 
     &:hover {
       background: var(--salt-air);

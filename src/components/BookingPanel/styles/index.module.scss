@@ -520,6 +520,7 @@
   .calendarPopover {
     left: 50%;
     right: auto;
+    max-width: calc(100vw - 24px);
     transform: translateX(-50%);
   }
 

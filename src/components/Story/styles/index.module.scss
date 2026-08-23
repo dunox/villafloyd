@@ -78,6 +78,14 @@
     grid-template-columns: 1fr;
   }
 
+  .featureGrid {
+    gap: 48px;
+  }
+
+  .feature {
+    gap: 32px;
+  }
+
   .reverse img {
     order: 0;
   }

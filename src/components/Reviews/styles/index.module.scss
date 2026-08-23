@@ -20,12 +20,21 @@
     display: grid;
     width: 46px;
     height: 46px;
+    padding: 0;
     place-items: center;
     border: 1px solid rgba(244, 246, 246, 0.26);
     border-radius: 50%;
     background: transparent;
     color: var(--white);
+    line-height: 0;
     cursor: pointer;
+
+    svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 0;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 .calendar {
-  width: min(720px, calc(100vw - 32px));
+  width: min(720px, calc(77vw - 32px));
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -68,6 +68,10 @@
   }
 }
 
+.outside {
+  color: var(--ocean-mist);
+}
+
 .day {
   position: relative;
   z-index: 1;
@@ -75,7 +79,7 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: var(--ink);
+  color: var(--available);
   font-size: 0.875rem;
   cursor: pointer;
 
@@ -88,10 +92,21 @@
   color: var(--ocean-mist);
 }
 
-.disabled {
+.day.disabled {
   color: var(--ocean-mist);
   text-decoration: line-through;
   cursor: not-allowed;
+}
+
+.booked {
+  color: var(--sandy-shore);
+  text-decoration: line-through;
+  text-decoration-color: var(--sandy-shore);
+  text-decoration-thickness: 1.5px;
+}
+
+.disabled.booked {
+  color: var(--unavailable);
 }
 
 .inRange {
@@ -104,6 +119,11 @@
   border-radius: 50%;
   background: var(--deep-sea);
   color: var(--white);
+}
+
+.checkout:not(:disabled) {
+  color: var(--deep-sea);
+  text-decoration: none;
 }
 
 .legend {
@@ -130,11 +150,17 @@
 }
 
 .available {
-  background: var(--seafoam);
+  background: var(--available);
 }
 
 .unavailable {
-  background: var(--sandy-shore);
+  background: var(--unavailable);
+}
+
+@media (max-width: 610px) {
+  .calendar {
+    width: min(720px, calc(90vw - 32px));
+  }
 }
 
 @media (max-width: 680px) {

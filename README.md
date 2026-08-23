@@ -12,8 +12,8 @@ Supabase
 ├── PostgreSQL — booking source of truth
 └── Edge Functions — availability + booking actions
         ↓
-├── Resend — owner/guest emails
-└── Google Calendar — confirmed stays for the owner
+├── Hostinger PHP mail() — owner/guest emails
+└── Google Calendar link — guest adds dates to their own calendar
 ```
 
 The website does **not** use Airbnb, Booking.com, iCal or any external booking marketplace. Dates are blocked only from direct requests created on this website.
@@ -35,9 +35,9 @@ The website does **not** use Airbnb, Booking.com, iCal or any external booking m
 - Custom form validation instead of browser `Please fill out this field` popups
 - Real booking reference shown after submission
 - Owner review Edge Function with explicit Confirm / Decline actions
-- Confirmed bookings can create an all-day Google Calendar event
+- Guests get an **Add to Google Calendar** link for their own calendar
 - Declined requests immediately release dates
-- Resend email templates for owner review and guest status updates
+- Hostinger PHP `mail()` bridge for owner review and guest status updates
 - Production Vite build fixed and verified
 
 ## Run locally
@@ -101,65 +101,44 @@ Database creates PENDING booking
         ↓
 Dates become unavailable on website immediately
         ↓
-Owner receives review email (after Resend setup)
+Owner receives review email through Hostinger PHP mail
         ↓
 Owner confirms
         ↓
 status = CONFIRMED
         ↓
-Google Calendar event is created
-        ↓
 Guest receives confirmation email
+        ↓
+Guest may add the stay to their own Google Calendar
 ```
 
 If the owner declines, the booking status becomes `declined` and the dates are released immediately.
 
 If no action is taken before the hold expires, the pending request becomes `expired` when availability is next checked.
 
-## Supabase Edge Function secrets still required for full owner workflow
+## Email delivery
 
-Set these in the Supabase project secrets before launch:
+No Resend account or API key is required. The production build contains `send-mail.php`, copied automatically from `public/send-mail.php`. Supabase Edge Functions call this PHP endpoint server-to-server and Hostinger sends the messages with PHP `mail()`.
+
+Current sender and owner inbox are both `contact@dunoxstudio.com`, matching the working Dunox Studio Hostinger mail setup. Owner messages use the guest email as `Reply-To`, so replying from the inbox goes directly to the guest.
+
+The PHP endpoint verifies the secure Supabase owner-review URL before sending mail, so it is not an open mail relay and no extra mail API secret is required.
+
+Optional Supabase settings:
 
 ```env
 PUBLIC_SITE_URL=https://your-live-domain.com
 BOOKING_HOLD_HOURS=24
-
-RESEND_API_KEY=re_...
-RESEND_FROM_EMAIL=Villa Floyd <bookings@your-domain.com>
-OWNER_EMAIL=owner@example.com
-
-GOOGLE_SERVICE_ACCOUNT_EMAIL=...
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-GOOGLE_CALENDAR_ID=...
+MAIL_BRIDGE_URL=https://dunoxstudio.com/villafloyd/send-mail.php
 ```
 
-`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are provided automatically by Supabase Edge Functions and must never be exposed to the browser.
+`MAIL_BRIDGE_URL` is optional because the current Dunox Studio Villa Floyd path is already used as a fallback. `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are provided automatically by Supabase Edge Functions and must never be exposed to the browser.
 
-### Behaviour before email/calendar secrets are configured
-
-Core website booking already works: the request is stored in PostgreSQL and the dates are held in the live availability calendar. Email notifications are skipped until Resend is configured.
-
-Owner confirmation requires Google Calendar credentials because the confirmation action is intentionally designed to create the owner calendar event atomically with confirmation.
-
-## Recommended owner calendar setup
-
-Use a separate Google Calendar named:
-
-```text
-Villa Floyd — Bookings
-```
-
-Create a Google Cloud service account, enable the Google Calendar API, and share only this secondary calendar with the service-account email using permission **Make changes to events**. Put its calendar ID, service account email and private key into Supabase secrets.
-
-This keeps the owner's personal calendar private while giving the booking backend access only to the villa calendar.
-
-## Resend setup
-
-Use Resend for transactional messages. Before launch, verify the villa's sending domain and set `RESEND_FROM_EMAIL` to an address on that domain. `OWNER_EMAIL` is the address that receives new booking requests and secure review links.
+Owner confirmation does not depend on Google Calendar credentials. Calendar links open the guest's own Google Calendar with the stay dates prefilled; editing that personal event never changes the booking record.
 
 ## Hostinger Premium deployment
 
-Hostinger Premium only needs to serve the static Vite output.
+Hostinger Premium serves the Vite output plus the small `send-mail.php` endpoint included in `dist/`.
 
 1. Run `npm run build`.
 2. Open Hostinger File Manager.

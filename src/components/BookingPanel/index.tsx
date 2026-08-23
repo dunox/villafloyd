@@ -1,8 +1,9 @@
-import { useMemo, useState, type FormEvent } from 'react';
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { differenceInCalendarDays, format } from 'date-fns';
 import { cleaningFee, nightlyRate } from '../../data/villa';
 import { BookingRequestError, submitBookingRequest } from '../../services/booking';
 import { invalidateAvailabilityCache } from '../../services/availability';
+import { buildGuestGoogleCalendarUrl } from '../../services/calendar';
 import type { DateRangeValue } from '../../types';
 import Button from '../../ui/Button';
 import Icon from '../../ui/Icon';
@@ -24,13 +25,62 @@ function BookingPanel() {
   const [bookingReference, setBookingReference] = useState('');
   const [availabilityRefresh, setAvailabilityRefresh] = useState(0);
   const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string }>({});
+  const calendarPopoverRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (!calendarOpen) return;
+
+    const handleOutsideClick = (event: PointerEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof Node)) return;
+
+      if (
+        target instanceof Element &&
+        target.closest('[data-calendar-trigger="true"]')
+      ) {
+        return;
+      }
+
+      if (
+        calendarPopoverRef.current &&
+        !calendarPopoverRef.current.contains(target)
+      ) {
+        setCalendarOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setCalendarOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handleOutsideClick);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [calendarOpen]);
+  
   const nights = useMemo(() => {
     if (!dates.from || !dates.to) return 0;
     return differenceInCalendarDays(dates.to, dates.from);
   }, [dates]);
 
   const total = nights ? nights * nightlyRate + cleaningFee : 0;
+
+  const guestCalendarUrl = useMemo(() => {
+    if (!dates.from || !dates.to) return '';
+    return buildGuestGoogleCalendarUrl({
+      checkIn: format(dates.from, 'yyyy-MM-dd'),
+      checkOut: format(dates.to, 'yyyy-MM-dd'),
+      reference: bookingReference || undefined,
+      guests,
+    });
+  }, [bookingReference, dates, guests]);
 
   const handleDates = (value: DateRangeValue) => {
     setDates(value);
@@ -107,6 +157,7 @@ function BookingPanel() {
           <button
             className={styles.field}
             type="button"
+            data-calendar-trigger="true"
             onClick={() => {
               setCalendarOpen((value) => !value);
               setGuestsOpen(false);
@@ -121,6 +172,7 @@ function BookingPanel() {
           <button
             className={styles.field}
             type="button"
+            data-calendar-trigger="true"
             onClick={() => {
               setCalendarOpen((value) => !value);
               setGuestsOpen(false);
@@ -150,7 +202,7 @@ function BookingPanel() {
 
         <div className={styles.popoverAnchor}>
           {calendarOpen ? (
-            <div className={styles.calendarPopover}>
+            <div ref={calendarPopoverRef} className={styles.calendarPopover}>
               <BookingCalendar value={dates} onChange={handleDates} refreshKey={availabilityRefresh} />
             </div>
           ) : null}
@@ -231,6 +283,20 @@ function BookingPanel() {
               <div><span>Estimate</span><strong>€{total}</strong></div>
             </div>
             {bookingReference ? <small className={styles.reference}>Reference · {bookingReference}</small> : null}
+            {guestCalendarUrl ? (
+              <a
+                className={styles.calendarLink}
+                href={guestCalendarUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icon name="calendar" size={17} />
+                Add requested dates to Google Calendar
+              </a>
+            ) : null}
+            <p className={styles.calendarNote}>
+              This adds the stay to your own calendar only. Editing it there does not change the booking request.
+            </p>
             <Button onClick={() => setModalOpen(false)}>Back to the villa</Button>
           </div>
         ) : (

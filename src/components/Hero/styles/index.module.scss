@@ -1,7 +1,8 @@
 .heroSection {
   position: relative;
   min-height: 100svh;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   background-position: center;
   background-size: cover;
   color: var(--white);

@@ -1,9 +1,5 @@
 import { corsHeaders, getRequiredEnv, jsonResponse, sha256Hex } from '../_shared/http.ts';
-import {
-  isEmailConfigured,
-  sendGuestRequestReceived,
-  sendOwnerBookingRequest,
-} from '../_shared/email.ts';
+import { sendGuestRequestReceived, sendOwnerBookingRequest } from '../_shared/email.ts';
 import { getAdminClient } from '../_shared/supabase.ts';
 import type { BookingRow } from '../_shared/types.ts';
 
@@ -136,22 +132,17 @@ Deno.serve(async (request) => {
     const functionsBase = `${getRequiredEnv('SUPABASE_URL').replace(/\/$/, '')}/functions/v1`;
     const reviewUrl = `${functionsBase}/booking-action?booking=${encodeURIComponent(booking.id)}&token=${encodeURIComponent(ownerToken)}`;
 
-    let notificationStatus: 'sent' | 'not_configured' | 'failed' = 'not_configured';
-    if (isEmailConfigured()) {
+    let notificationStatus: 'sent' | 'failed' = 'failed';
+    try {
+      await sendOwnerBookingRequest(booking, reviewUrl);
+      notificationStatus = 'sent';
       try {
-        await sendOwnerBookingRequest(booking, reviewUrl);
-        notificationStatus = 'sent';
-        try {
-          await sendGuestRequestReceived(booking);
-        } catch (emailError) {
-          console.error('guest acknowledgement email failed', emailError);
-        }
+        await sendGuestRequestReceived(booking, reviewUrl);
       } catch (emailError) {
-        notificationStatus = 'failed';
-        console.error('owner email failed; booking remains safely stored', emailError);
+        console.error('guest acknowledgement email failed', emailError);
       }
-    } else {
-      console.warn('Resend/owner email secrets are not configured. Booking stored without email notification.');
+    } catch (emailError) {
+      console.error('owner email failed; booking remains safely stored', emailError);
     }
 
     return jsonResponse(

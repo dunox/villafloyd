@@ -46,12 +46,12 @@
 - If the database confirmation fails after event creation, cleanup removes the orphan event.
 
 ### 7. Email
-- Implemented Resend templates for:
+- Implemented Hostinger PHP mail bridge templates for:
   - owner booking request/review link;
   - guest request received;
   - guest confirmed;
   - guest declined.
-- Email integration is optional during development: booking data is still stored safely if Resend secrets are not configured.
+- Email integration is optional during development: booking data is still stored safely if Hostinger PHP mail bridge secrets are not configured.
 
 ### 8. Build
 - Fixed the existing `tsconfig.node.json` build error by making the Node config no-emit compatible with `allowImportingTsExtensions`.
@@ -73,21 +73,16 @@ Security advisor result:
 Performance advisor result:
 - No findings.
 
-## Still required from the owner before full launch
+## External configuration to verify before full launch
 
-### Resend
+### Hostinger PHP mail bridge email
+The booking flow is already wired for transactional email. Verify these Supabase secrets are set:
 - `RESEND_API_KEY`
 - verified sending address/domain for `RESEND_FROM_EMAIL`
 - `OWNER_EMAIL`
 
-### Google Calendar
-- Create secondary calendar `Villa Floyd — Bookings`.
-- Create Google Cloud service account and enable Calendar API.
-- Share only that calendar with the service account as `Make changes to events`.
-- Set:
-  - `GOOGLE_SERVICE_ACCOUNT_EMAIL`
-  - `GOOGLE_PRIVATE_KEY`
-  - `GOOGLE_CALENDAR_ID`
+### Guest calendar
+No Google API credentials are required. The website and confirmation email use an **Add to Google Calendar** link that opens the guest's own calendar with the stay dates prefilled.
 
 ### Production domain
 - Set `PUBLIC_SITE_URL` in Supabase once the live domain is known.

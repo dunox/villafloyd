@@ -72,11 +72,20 @@
 .menuButton {
   width: 44px;
   height: 44px;
+  padding: 0;
   place-items: center;
+  line-height: 0;
   border: 1px solid currentColor;
   border-radius: 50%;
   background: transparent;
   color: inherit;
+
+  svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+  }
 }
 
 @media (max-width: 920px) {

@@ -7,7 +7,7 @@ import entranceLounge from '../assets/images/entrance-lounge.webp';
 import gardenLounge from '../assets/images/garden-lounge.webp';
 import gardenSteps from '../assets/images/garden-steps.webp';
 import gardenTerraceDaybedDining from '../assets/images/garden-terrace-daybed-dining.webp';
-import hotTub from '../assets/images/hot-tub.webp';
+import oceanViewTerrace from '../assets/images/hot-tub.webp';
 import kitchenArchway from '../assets/images/kitchen-archway.webp';
 import kitchenDetail from '../assets/images/kitchen-detail.webp';
 import kitchenMain from '../assets/images/kitchen-main.webp';
@@ -23,7 +23,7 @@ import poolSunset from '../assets/images/pool-sunset.webp';
 import poolTerrace from '../assets/images/pool-terrace.webp';
 import poolView from '../assets/images/pool-view.webp';
 import poolWithSeaView from '../assets/images/pool-with-sea-view.webp';
-import poolsideTerraceHotTubMountainView from '../assets/images/poolside-terrace-hot-tub-mountain-view.webp';
+import poolsideTerraceMountainView from '../assets/images/poolside-terrace-hot-tub-mountain-view.webp';
 import poolChaiseLongue from '../assets/images/poolside-terrace-loungers-hot-tub.webp';
 import shadedPoolsideTerrace from '../assets/images/shaded-poolside-terrace.webp';
 import splitLevelLivingDiningRoom from '../assets/images/split-level-living-dining-room.webp';
@@ -59,7 +59,7 @@ export const images = {
   poolTerrace,
   poolView,
   poolWithSeaView,
-  poolsideTerraceHotTubMountainView,
+  poolsideTerraceMountainView,
   poolChaiseLongue,
   shadedPoolsideTerrace,
   kitchen: kitchenMain,
@@ -70,8 +70,8 @@ export const images = {
   bedroom: masterBedroom,
   masterBedroom,
   twinBedroom,
-  terrace: hotTub,
-  hotTub,
+  terrace: oceanViewTerrace,
+  oceanViewTerrace,
   dining: diningArea,
   diningArea,
   diningRoom,
@@ -87,21 +87,15 @@ export const highlights: Highlight[] = [
   { value: '2', label: 'bedrooms' },
   { value: '6', label: 'guests' },
   { value: '8 × 4 m', label: 'private pool' },
-  { value: '6 seats', label: 'hot tub' },
+  { value: 'Extensive', label: 'ocean views' },
 ];
 
 export const amenities: Amenity[] = [
   {
-    image: poolChaiseLongue,
-    imageAlt: 'Private Villa Floyd swimming pool and sun loungers',
-    title: 'Private pool',
-    description: 'An 8 × 4 metre pool on a secluded, sea-facing terrace.',
-  },
-  {
-    image: hotTub,
-    imageAlt: 'Six-seat hot tub beside the private pool',
-    title: 'Hot tub',
-    description: 'A six-seat hot tub for slow evenings beneath the Andalusian sky.',
+    image: poolWithSeaView,
+    imageAlt: 'Sea-view terrace beside the private pool',
+    title: 'Sea-view terrace',
+    description: 'A peaceful terrace with extensive sea views.',
   },
   {
     image: livingRoomOverview,
@@ -110,22 +104,28 @@ export const amenities: Amenity[] = [
     description: 'Air conditioning in both bedrooms and the main lounge.',
   },
   {
+    image: bbqTerrace,
+    imageAlt: 'Barbecue area on the Villa Floyd terrace',
+    title: 'Barbeque zone',
+    description: 'A dedicated barbecue area for relaxed outdoor meals with family and friends.',
+  },
+  {
+    image: livingRoomTvWorkspace,
+    imageAlt: 'Comfortable lounge with a 55-inch Smart TV and entertainment system',
+    title: '55” Smart TV',
+    description: 'Internet programming, sports, films, series, radio, DVD and music library.',
+  },
+  {
     image: diningArea,
     imageAlt: 'Bright dining space at Villa Floyd',
     title: 'Fast fibre Wi-Fi',
     description: 'Complimentary fibre internet with a wired LAN connection available.',
   },
   {
-    image: livingRoomTvWorkspace,
-    imageAlt: 'Comfortable lounge with television and entertainment system',
-    title: 'Full entertainment',
-    description: 'Internet television, sports, films, series, radio, DVD and music library.',
-  },
-  {
-    image: bbqTerrace,
-    imageAlt: 'Barbecue area on the Villa Floyd terrace',
-    title: 'Barbeque zone',
-    description: 'A dedicated barbecue area for relaxed outdoor meals with family and friends.',
+    image: poolChaiseLongue,
+    imageAlt: 'Private Villa Floyd swimming pool and sun loungers',
+    title: 'Private pool',
+    description: 'An 8 × 4 metre pool on a secluded, sea-facing terrace.',
   },
   {
     image: masterBedroom,
@@ -144,7 +144,7 @@ export const amenities: Amenity[] = [
 export const reviews: Review[] = [
   {
     quote:
-      'The terrace was the heart of our stay. Breakfast with the sea below, long afternoons by the pool and quiet evenings in the hot tub.',
+      'The terrace was the heart of our stay. Breakfast with the sea below, long afternoons by the pool and quiet evenings taking in the extensive sea views.',
     author: 'Amelia R.',
     stay: 'London · family stay',
   },

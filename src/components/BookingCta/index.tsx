@@ -5,7 +5,7 @@ import styles from './styles/index.module.scss';
 
 function BookingCta() {
   return (
-    <section className={styles.bookingCtaSection} style={{ backgroundImage: `url(${images.terrace})` }}>
+    <section className={styles.bookingCtaSection} style={{ backgroundImage: `url(${images.poolSunset})` }}>
       <div className={styles.overlay} />
       <Container className={styles.content}>
         <h2>Wake to the sea.<br />Stay for the sunset.</h2>

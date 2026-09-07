@@ -19,7 +19,7 @@ function Location() {
         <div className={styles.grid}>
           <div className={styles.content}>
             <SectionHeading
-              eyebrow="Torreblanca, Fuengirola"
+              eyebrow="Torreblanca, near Fuengirola."
               title="Peaceful above the coast, connected to everything."
               body="Torreblanca is an established residential neighbourhood east of central Fuengirola. The beach, restaurants and everyday essentials are close by, while the local train makes the wider coast easy to explore without a car."
             />
@@ -42,7 +42,7 @@ function Location() {
               <div>
                 <small>Stay here</small>
                 <strong>Villa Floyd</strong>
-                <p>Torreblanca, Fuengirola</p>
+                <p>Torreblanca, near Fuengirola.</p>
               </div>
             </div>
           </ScrollRevealImage>

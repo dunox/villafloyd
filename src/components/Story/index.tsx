@@ -18,7 +18,7 @@ function Story() {
               and a split-level layout that allows air and light to move naturally through the house.
             </p>
             <p>
-              The lounge includes a 40-inch flat-screen television with internet-provided programming,
+              The lounge includes a 55-inch Smart TV with internet-provided programming,
               Sky Sports, films, children’s channels, radio, a DVD collection and more. Fibre-optic Wi-Fi
               and a LAN connection are available throughout, while air conditioning serves the lounge and
               bedrooms. A wood-burning stove makes winter stays equally inviting.
